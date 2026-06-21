@@ -1,0 +1,34 @@
+# Zależności
+node_modules/
+.pnp
+.pnp.js
+
+# Środowisko (NIE commituj .env!)
+.env
+.env.local
+.env.production
+
+# Baza danych SQLite (generowana lokalnie)
+*.sqlite
+*.db
+
+# Pliki build
+dist/
+build/
+
+# Przesłane zdjęcia (nie commituj)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Logi
+*.log
+npm-debug.log*
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

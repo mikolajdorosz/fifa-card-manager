@@ -1,0 +1,2 @@
+# Ten plik sprawia że folder uploads jest commitowany do repozytorium
+# ale jego zawartość (zdjęcia) jest ignorowana przez .gitignore
