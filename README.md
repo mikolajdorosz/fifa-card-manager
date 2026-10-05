@@ -1,32 +1,44 @@
-# ⚽ FIFA Card Manager — AGH WWW Project
+# FIFA Card Manager — AGH WWW and Script Languages Project
 
-Menedżer piłkarski z systemem kart inspirowany grą FIFA, oparty na TheSportsDB API.
+A full-stack football card management application inspired by FIFA Ultimate Team. It is an academic project combining a Vue.js frontend with a Node.js/Express backend and integrates external football data through TheSportsDB API.
 
-## 🏗️ Struktura projektu
+## Project overview
+
+The application provides two main user interfaces: player panel, that allows player managing a squad, collecting cards and printing their pdf versions, opening packs, using the transfer market and completing Squad Building Challenges, and admin panel, that is responsible for creating cards either from API or custom data, card templates, packs and SBCs.
+
+Player data is retrieved from an external football API and used to generate collectible cards. Users can also export individual cards as PDF files.
+
+## Project structure
 
 ```
 fifa-manager/
 ├── backend/                  # Node.js + Express + SQLite/Sequelize
-│   ├── config/                # Konfiguracja bazy danych i seed danych testowych
-│   ├── controllers/           # Logika biznesowa dla każdego modułu
-│   ├── middleware/            # Auth (JWT), upload plików (Multer)
-│   ├── models/                # Modele Sequelize (tabele SQLite)
-│   ├── routes/                # Definicje endpointów API
-│   ├── services/               # Serwisy (TheSportsDB API, losowanie paczek)
-│   └── uploads/                # Zdjęcia przesyłane przez admina (custom karty, tła szablonów)
+│   ├── config/                # Database configuration and seed of sample data
+│   ├── controllers/           # Business logic for each module
+│   ├── middleware/            # Auth (JWT), file upload (Multer)
+│   ├── models/                # Modele Sequelize (SQLite tables)
+│   ├── routes/                # API endpoint definitions
+│   ├── services/               # Services (TheSportsDB API, drawing cards from packs)
+│   └── uploads/                # Pictures send by admin (custom cards, template backgrounds)
 ├── frontend/                  # Vue 3 + TailwindCSS (Vite)
 │   └── src/
-│       ├── api/                # Skonfigurowana instancja Axios
-│       ├── components/cards/   # PlayerCard.vue — renderowanie karty + eksport PDF
-│       ├── router/             # Vue Router + guard autoryzacji
-│       ├── store/              # Pinia (stan zalogowanego użytkownika)
+│       ├── api/                # Axios instance configuration
+│       ├── components/cards/   # PlayerCard.vue — card render + PDF export
+│       ├── router/             # Vue Router + authorization guard
+│       ├── store/              # Pinia (state of logged user)
 │       └── views/
-│           ├── admin/          # Panel admina: karty, szablony, paczki, SBC
-│           └── player/         # Panel gracza: skład, kolekcja, SBC, rynek, sklep
-└── docs/                       # Dokumentacja API
+│           ├── admin/          # Admin panel: cards, templates, packs, SBC
+│           └── player/         # Player panel: squad, collection, SBC, market, shop
+└── docs/                       # API documentation
 ```
 
-## 🚀 Uruchomienie projektu
+## Running the project
+
+### Setup
+
+```bash
+./start.sh
+```
 
 ### Backend
 ```bash
@@ -42,20 +54,8 @@ npm install
 npm run dev
 ```
 
-## 👥 Podział pracy (modułowy)
-
-| Moduł | Pliki backend | Pliki frontend |
-|-------|--------------|----------------|
-| **Autoryzacja** | `controllers/authController.js`, `models/User.js` | `views/Login.vue`, `views/Register.vue`, `store/auth.js` |
-| **Karty + Admin** | `controllers/cardController.js`, `services/sportsDbService.js` | `views/admin/AdminCards.vue`, `components/cards/PlayerCard.vue` |
-| **Szablony** | `controllers/templateController.js`, `models/CardTemplate.js` | `views/admin/AdminTemplates.vue` |
-| **Paczki** | `controllers/packController.js`, `services/packService.js` | `views/admin/AdminPacks.vue`, `views/player/Shop.vue` |
-| **Skład** | `controllers/squadController.js`, `models/Squad.js` | `views/player/SquadView.vue` |
-| **SBC** | `controllers/sbcController.js` | `views/admin/AdminSBC.vue`, `views/player/SBC.vue` |
-| **Rynek** | `controllers/marketController.js` | `views/player/Market.vue` |
-
-## 🔗 TheSportsDB API
+## TheSportsDB API
 
 Base URL: `https://www.thesportsdb.com/api/v1/json/3/`
 
-Kluczowe endpointy użyte w projekcie — patrz `docs/api.md`
+Key endpoints used in app — `docs/api.md`
